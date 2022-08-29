@@ -16,7 +16,7 @@ const Home = (props) => {
       <div className="heroContainer z-0">
         <Hero modalOpen={props.modalOpen} />
       </div>
-      <div className="flex max-w-screen flex-wrap justify-around">
+      <div className="flex max-w-screen flex-wrap justify-evenly">
         <PropertyCard />
         <PropertyCard />
         <PropertyCard />
