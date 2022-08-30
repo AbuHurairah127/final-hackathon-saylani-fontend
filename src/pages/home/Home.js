@@ -24,9 +24,6 @@ const Home = (props) => {
         <PropertyCard />
         <PropertyCard />
       </div>
-      <div className="contactFormContainer">
-        <ContactForm />
-      </div>
       <div className="footerCContainer">
         <Bottom />
       </div>
