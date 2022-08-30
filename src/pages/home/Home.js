@@ -1,7 +1,5 @@
 import React from "react";
 import Hero from "./../../components/hero/Hero";
-
-import ContactForm from "./../../components/constactUs/ContactForm";
 import Bottom from "../../components/bottom/Bottom";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
