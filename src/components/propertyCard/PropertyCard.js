@@ -5,7 +5,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 const PropertyCard = () => {
   return (
     <div
-      className="group propertyCard max-w-[30ch] max-h-[425px] rounded-md my-3 bg-[#274773] shadow-md shadow-[#112239] bg-cover bg-no-repeat bg-center pt-[3rem] text-white lg:hover:scale-105 lg:focus-within:scale-105 transition-all duration-300 overflow-hidden"
+      className="group propertyCard max-w-[30ch] max-h-[425px] rounded-md my-3 bg-[#274773] shadow-md shadow-[#112239] bg-cover bg-no-repeat bg-center pt-[1rem] text-white lg:hover:scale-105 lg:focus-within:scale-105 transition-all duration-300 cursor-pointer overflow-hidden"
       style={{
         backgroundImage: `url(${test})`,
       }}
@@ -24,12 +24,18 @@ const PropertyCard = () => {
           A brand new mansion is for sal
         </div>
         <div className="property-owner-name lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 transition-all delay-300 duration-1000 ease-in-out text-lg mt-2">
-          Abu Hurairah
+          Owner Name: Abu Hurairah
+        </div>
+        <div className="property-details text-[#F9995D] lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 transition-all delay-300 duration-1000 ease-in-out">
+          Property Type : Mansion
         </div>
 
         <div className="property-details lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 transition-all delay-300 duration-1000 ease-in-out">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
           corporis eum adipisci fugia love u
+        </div>
+        <div className="property-details lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 transition-all delay-300 duration-1000 ease-in-out">
+          City: Faisalabad
         </div>
         <div className="bottom-section flex justify-around lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 transition-all delay-300 duration-1000 ease-in-out">
           <button>

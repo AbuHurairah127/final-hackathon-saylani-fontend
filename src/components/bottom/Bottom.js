@@ -19,9 +19,9 @@ const Bottom = () => {
                   Hurairah&nbsp;
                 </span>
                 <span className="text-4xl text-[#F9995D] block sm:inline text-center md:text-left">
-                  Estate&nbsp;
+                  Real&nbsp;
                 </span>
-                Ajency
+                Estate
               </span>
             </HashLink>
             <p className="text-lg">

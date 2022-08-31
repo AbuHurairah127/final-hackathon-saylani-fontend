@@ -19,7 +19,7 @@ const Hero = (props) => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="flex flex-wrap   w-[80vw]">
+      <div className="flex flex-wrap w-[80vw]">
         <h1
           className="text-6xl text-[#F9995D]  md:ml-5"
           style={{ fontFamily: "work sans" }}
@@ -30,13 +30,13 @@ const Hero = (props) => {
           className="text-6xl text-[#F9995D]"
           style={{ fontFamily: "work sans" }}
         >
-          Estate&nbsp;
+          Real&nbsp;
         </h1>
         <h1
           className="text-6xl text-white md:ml-5 lg:ml-0"
           style={{ fontFamily: "work sans" }}
         >
-          Ajency
+          Estate
         </h1>
       </div>
       {!props.modalOpen && (
@@ -55,7 +55,7 @@ const Hero = (props) => {
         </div>
       )}
 
-      <div className="mt-8 ml-5">
+      <div className="mt-8 ml-5 max-w-fit">
         {isUserLoggined ? (
           <Link to="/add-properties">
             <Button label="Sell Property" />
