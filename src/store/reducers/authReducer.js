@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, NEWS } from "./../types/constants";
+import { LOGIN, LOGOUT } from "./../types/constants";
 let initialState = {
   isAuthenticated: true,
   cUser: {},

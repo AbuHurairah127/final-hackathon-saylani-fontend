@@ -4,6 +4,7 @@ import { useSelector } from "react-redux/";
 import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import AddProperty from "../pages/addProperty/addProperty";
+import FilterProperty from "../pages/filterProperty/FilterProperty";
 import PrivateRoutes from "./PrivateRoutes";
 import ChangePassword from "../pages/changePassword/ChangePassword";
 import Register from "../pages/register/Register";
@@ -28,6 +29,10 @@ const Routing = (props) => {
           <Route
             path="/add-properties"
             element={<PrivateRoutes Component={AddProperty} />}
+          />
+          <Route
+            path="/filter-properties"
+            element={<PrivateRoutes Component={FilterProperty} />}
           />
           <Route
             path="/change-password"
