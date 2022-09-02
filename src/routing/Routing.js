@@ -6,7 +6,6 @@ import Login from "../pages/login/Login";
 import AddProperty from "../pages/addProperty/addProperty";
 import FilterProperty from "../pages/filterProperty/FilterProperty";
 import PrivateRoutes from "./PrivateRoutes";
-import ChangePassword from "../pages/changePassword/ChangePassword";
 import Register from "../pages/register/Register";
 
 const Routing = (props) => {
@@ -31,10 +30,6 @@ const Routing = (props) => {
             element={<PrivateRoutes Component={AddProperty} />}
           />
           <Route path="/filter-properties" element={<FilterProperty />} />
-          <Route
-            path="/change-password"
-            element={<PrivateRoutes Component={ChangePassword} />}
-          />
         </Routes>
       </main>
     </BrowserRouter>

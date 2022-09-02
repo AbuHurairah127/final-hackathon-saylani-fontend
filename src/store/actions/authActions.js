@@ -36,19 +36,22 @@ export const userLogin = (data, setButtonLoader) => async (dispatch) => {
 };
 export const fetchCurrentUser = (setPreLoader) => async (dispatch) => {
   try {
-    const userToken = {
-      method: "POST",
-      url: `${baseURL}auth/user-data`,
-      headers: {
-        token: localStorage.getItem("token"),
-      },
-    };
-    const userData = await axios.request(userToken);
-    if (userData.status === 200) {
-      dispatch({
-        type: LOGIN,
-        payload: userData.data.user,
-      });
+    const userAuthToken = localStorage.getItem("token");
+    if (userAuthToken) {
+      const userToken = {
+        method: "POST",
+        url: `${baseURL}auth/user-data`,
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      };
+      const userData = await axios.request(userToken);
+      if (userData.status === 200) {
+        dispatch({
+          type: LOGIN,
+          payload: userData.data.user,
+        });
+      }
     }
   } catch (error) {
     window.notify(error.message, "error");
@@ -58,5 +61,15 @@ export const fetchCurrentUser = (setPreLoader) => async (dispatch) => {
     }, 3000);
   }
 };
-export const userLogout = (setIsLoggingOut) => async (dispatch) => {};
-export const passwordUpdate = (data, setIsLoading) => async (dispatch) => {};
+export const userLogout = (setIsLoggingOut) => async (dispatch) => {
+  try {
+    setIsLoggingOut(true);
+    localStorage.removeItem("token");
+    dispatch({
+      type: LOGOUT,
+    });
+  } catch (error) {
+    window.notify(error.massage, "error");
+  } finally {
+  }
+};

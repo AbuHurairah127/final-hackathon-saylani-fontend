@@ -41,7 +41,7 @@ const Navbar = () => {
             {isUserLoggined && (
               <Link to="/">
                 {" "}
-                <Button label="logout" event={onLogoutHandler} />
+                <Button label="Logout" event={onLogoutHandler} />
               </Link>
             )}
           </div>
