@@ -16,7 +16,7 @@ const Home = (props) => {
         <Navbar />
       </div>
       <div className="heroContainer z-0">
-        <Hero modalOpen={props.modalOpen} />
+        <Hero />
       </div>
       <div className="flex max-w-screen flex-wrap justify-evenly py-8">
         {properties.length > 0 ? (

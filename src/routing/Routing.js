@@ -17,7 +17,7 @@ const Routing = (props) => {
     <BrowserRouter>
       <main>
         <Routes>
-          <Route path="/" element={<Home modalOpen={props.modalOpen} />} />
+          <Route path="/" element={<Home />} />
           <Route
             path="/login"
             element={!isUserLoggined ? <Login /> : <Navigate to="/" />}
@@ -30,10 +30,7 @@ const Routing = (props) => {
             path="/add-properties"
             element={<PrivateRoutes Component={AddProperty} />}
           />
-          <Route
-            path="/filter-properties"
-            element={<PrivateRoutes Component={FilterProperty} />}
-          />
+          <Route path="/filter-properties" element={<FilterProperty />} />
           <Route
             path="/change-password"
             element={<PrivateRoutes Component={ChangePassword} />}

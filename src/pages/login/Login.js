@@ -131,7 +131,13 @@ const Login = () => {
                 </span>
               </div>
               <div className="mb-5">
-                <Button label="Login" type="submit" />
+                <Button
+                  label={
+                    buttonLoading ? <ButtonLoader color="#DE5C0B" /> : "Login"
+                  }
+                  type="submit"
+                  disabled={buttonLoading}
+                />
               </div>
             </div>
           </form>

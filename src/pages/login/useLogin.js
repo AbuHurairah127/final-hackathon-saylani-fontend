@@ -18,7 +18,7 @@ const useLogin = () => {
     if (loginData.email === "" || loginData.password === "") {
       window.notify("Please fill all the input fields properly!", "error");
     } else {
-      dispatch(userLogin(loginData));
+      dispatch(userLogin(loginData, setButtonLoading));
       setLoginData({ email: "", password: "" });
     }
   };

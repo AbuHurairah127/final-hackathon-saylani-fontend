@@ -2,27 +2,27 @@ import React from "react";
 import "./Bottom.css";
 import { AiOutlineInstagram, AiFillFacebook } from "react-icons/ai";
 import { ImWhatsapp } from "react-icons/im";
-
+import { HashLink } from "react-router-hash-link";
 const Bottom = () => {
   return (
     <div className="max-w-screen bg-[#1d3557] text-white flex flex-col justify-around  lg:min-h-[30vh] flex-wrap border-b-2 border-b-[#fff]">
       <div className="w-full flex justify-between flex-wrap flex-col items-center lg:flex-row lg:items-start">
         <div className="left flex flex-col justify-between ml-5 lg:min-h-[20vh] lg:w-1/2">
           <div className="leftHeader flex flex-col items-center lg:items-start pt-5 lg:pt-0">
-            {/* <HashLink smooth={true} to="/#top"> */}
-            <span
-              className="text-4xl block sm:inline text-center md:text-left"
-              style={{ fontFamily: "work sans" }}
-            >
-              <span className="text-4xl text-[#F9995D] block sm:inline text-center md:text-left">
-                Hurairah&nbsp;
+            <HashLink smooth={true} to="/#top">
+              <span
+                className="text-4xl block sm:inline text-center md:text-left"
+                style={{ fontFamily: "work sans" }}
+              >
+                <span className="text-4xl text-[#F9995D] block sm:inline text-center md:text-left">
+                  Hurairah&nbsp;
+                </span>
+                <span className="text-4xl text-[#F9995D] block sm:inline text-center md:text-left">
+                  Real&nbsp;
+                </span>
+                Estate
               </span>
-              <span className="text-4xl text-[#F9995D] block sm:inline text-center md:text-left">
-                Real&nbsp;
-              </span>
-              Estate
-            </span>
-            {/* </HashLink> */}
+            </HashLink>
             <p className="text-lg">
               An Excellent place to buy and sell properties.
             </p>
@@ -66,7 +66,7 @@ const Bottom = () => {
               <p className="text-[#628dc5]">
                 Address:{" "}
                 <span className="text-white pl-3">
-                  127/C Gulberg Faisalabad
+                  327/B, G.M. Abad, Faisalabad
                 </span>
               </p>
               <a href="tel:03207443537" className="text-[#628dc5] block">
@@ -77,9 +77,7 @@ const Bottom = () => {
                 className="text-[#628dc5] block"
               >
                 Mail:{" "}
-                <span className="text-white pl-3">
-                  abuh4495@gmail@gmail.com
-                </span>
+                <span className="text-white pl-3">abuh4495@gmail.com</span>
               </a>
             </div>
           </div>
