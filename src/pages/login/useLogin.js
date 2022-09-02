@@ -6,19 +6,20 @@ const useLogin = () => {
   const dispatch = useDispatch();
   const [isPasswordAppear, setIsPasswordAppear] = useState(false);
   const [loginData, setLoginData] = useState({
-    userName: "",
+    email: "",
     password: "",
   });
   const onChangeHandler = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
   const onLoginHandler = (e) => {
+    e.preventDefault();
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
-    if (loginData.userName === "" || loginData.password === "") {
+    if (loginData.email === "" || loginData.password === "") {
       window.notify("Please fill all the input fields properly!", "error");
     } else {
-      dispatch(userLogin(loginData, setButtonLoading));
-      setLoginData({ userName: "", password: "" });
+      dispatch(userLogin(loginData));
+      setLoginData({ email: "", password: "" });
     }
   };
   return {

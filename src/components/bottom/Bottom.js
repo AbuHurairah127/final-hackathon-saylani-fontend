@@ -2,7 +2,6 @@ import React from "react";
 import "./Bottom.css";
 import { AiOutlineInstagram, AiFillFacebook } from "react-icons/ai";
 import { ImWhatsapp } from "react-icons/im";
-import { HashLink } from "react-router-hash-link";
 
 const Bottom = () => {
   return (
@@ -10,20 +9,20 @@ const Bottom = () => {
       <div className="w-full flex justify-between flex-wrap flex-col items-center lg:flex-row lg:items-start">
         <div className="left flex flex-col justify-between ml-5 lg:min-h-[20vh] lg:w-1/2">
           <div className="leftHeader flex flex-col items-center lg:items-start pt-5 lg:pt-0">
-            <HashLink smooth to="/#top">
-              <span
-                className="text-4xl block sm:inline text-center md:text-left"
-                style={{ fontFamily: "work sans" }}
-              >
-                <span className="text-4xl text-[#F9995D] block sm:inline text-center md:text-left">
-                  Hurairah&nbsp;
-                </span>
-                <span className="text-4xl text-[#F9995D] block sm:inline text-center md:text-left">
-                  Real&nbsp;
-                </span>
-                Estate
+            {/* <HashLink smooth={true} to="/#top"> */}
+            <span
+              className="text-4xl block sm:inline text-center md:text-left"
+              style={{ fontFamily: "work sans" }}
+            >
+              <span className="text-4xl text-[#F9995D] block sm:inline text-center md:text-left">
+                Hurairah&nbsp;
               </span>
-            </HashLink>
+              <span className="text-4xl text-[#F9995D] block sm:inline text-center md:text-left">
+                Real&nbsp;
+              </span>
+              Estate
+            </span>
+            {/* </HashLink> */}
             <p className="text-lg">
               An Excellent place to buy and sell properties.
             </p>

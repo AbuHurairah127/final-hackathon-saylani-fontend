@@ -6,7 +6,7 @@ import useLogin from "./useLogin";
 import ButtonLoader from "./../../components/buttonLoader/ButtonLoader";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
-
+import loginBG from "./../../assets/loginBG.png";
 const Login = () => {
   const {
     buttonLoading,
@@ -18,102 +18,126 @@ const Login = () => {
   } = useLogin();
   return (
     <div
-      className="max-w-screen flex flex-col justify-between h-[100vh]"
+      className="max-w-screen flex flex-col items-center justify-between h-[100vh] bg-center bg-cover"
       style={{
         fontFamily: "work sans",
+        backgroundImage: `linear-gradient(0deg,rgba(2, 48, 71, 0.95),rgba(0, 180, 216, 0.15)),url(${loginBG})`,
       }}
     >
       <div className="navbarContainer">
         <Navbar />
       </div>
-      <div className="mx-auto">
+      <main>
         <div
-          className="loginForm w-[80vw] flex flex-col items-center justify-evenly min-h-[60vh]"
-          style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
+          className="md:w-[70vw] rounded-md"
+          style={{
+            boxShadow:
+              "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+            backgroundColor: "rgba(2, 48, 71, 0.65)",
+          }}
         >
-          <h1 className="text-4xl font-bold">Login Form</h1>
-          <div className=" flex flex-col space-y-5 justify-center">
-            <input
-              type="number"
-              placeholder="Enter Your Roll No. e.g 22100"
-              className="border-2 border-gray-300 px-3 py-1 w-[60vw] rounded outline-0"
-              name="userName"
-              value={loginData.userName}
-              onChange={(e) => {
-                onChangeHandler(e);
-              }}
-              required
-            />
-            {isPasswordAppear ? (
-              <div className="flex items-center">
+          <h1 className="text-center text-white text-3xl pt-5">Login</h1>
+          <form
+            onSubmit={(e) => {
+              onLoginHandler(e);
+            }}
+          >
+            <div className="w-full flex flex-col items-center ">
+              <div className="md:w-[60vw] flex flex-col flex-wrap justify-between items-center my-5 mx-5">
+                <label
+                  htmlFor="email"
+                  className="self-start text-white text-lg"
+                >
+                  Email:
+                </label>
                 <input
-                  type="text"
-                  placeholder="Enter Your password"
-                  className="border-2 border-gray-300 px-3 py-1 w-[60vw] rounded outline-0"
-                  name="password"
-                  value={loginData.password}
-                  onChange={(e) => {
-                    onChangeHandler(e);
-                  }}
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email *"
                   required
+                  className="md:w-[39vw] outline-0 px-4 py-2 rounded-sm border-2"
+                  value={loginData.email}
+                  onChange={(e) => onChangeHandler(e)}
                 />
-                <AiFillEyeInvisible
-                  size={20}
-                  style={{
-                    marginLeft: 10,
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    setIsPasswordAppear(!isPasswordAppear);
-                  }}
-                />
+                {!isPasswordAppear ? (
+                  <>
+                    <label
+                      htmlFor="password"
+                      className="self-start text-white text-lg"
+                    >
+                      Password:
+                    </label>
+                    <div className="flex items-center mt-5">
+                      <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Your Password *"
+                        required
+                        className="md:w-[35vw] outline-0 px-4 py-2 rounded-sm border-2 mr-3"
+                        value={loginData.password}
+                        onChange={(e) => onChangeHandler(e)}
+                      />
+                      <button
+                        className=""
+                        type="button"
+                        onClick={() => {
+                          setIsPasswordAppear(!isPasswordAppear);
+                        }}
+                      >
+                        <AiFillEye size={25} color="#F9995D" />
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <label
+                      htmlFor="password"
+                      className="self-start text-white text-lg"
+                    >
+                      Password:
+                    </label>
+                    <div className="flex items-center mt-5">
+                      <input
+                        type="type"
+                        name="password"
+                        id="password"
+                        placeholder="Your Password *"
+                        required
+                        className="md:w-[35vw] outline-0 px-4 py-2 rounded-sm border-2 mr-3"
+                        value={loginData.password}
+                        onChange={(e) => onChangeHandler(e)}
+                      />
+                      <button className="" type="button">
+                        <AiFillEyeInvisible
+                          size={25}
+                          color="#F9995D"
+                          onClick={() => {
+                            setIsPasswordAppear(!isPasswordAppear);
+                          }}
+                        />
+                      </button>
+                    </div>
+                  </>
+                )}
+                <span className="mt-5 text-white">
+                  Don't have an account.Please{" "}
+                  <Link to="/register">
+                    <span className="text-[#F9995D] underline underline-offset-2">
+                      Register
+                    </span>
+                  </Link>
+                </span>
               </div>
-            ) : (
-              <div className="flex items-center">
-                <input
-                  type="password"
-                  placeholder="Enter Your password"
-                  className="border-2 border-gray-300 px-3 py-1 w-[60vw] rounded outline-0"
-                  name="password"
-                  value={loginData.password}
-                  onChange={(e) => {
-                    onChangeHandler(e);
-                  }}
-                  required
-                />
-                <AiFillEye
-                  size={20}
-                  style={{
-                    marginLeft: 10,
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    setIsPasswordAppear(!isPasswordAppear);
-                  }}
-                />
+              <div className="mb-5">
+                <Button label="Login" type="submit" />
               </div>
-            )}
-          </div>
-          <div className="">
-            <Button
-              label={buttonLoading ? <ButtonLoader color="#DE5C0B" /> : "Login"}
-              textCol="black"
-              event={(e) => {
-                onLoginHandler(e);
-              }}
-              disabled={buttonLoading}
-            />
-          </div>
-          <p>
-            Don't have an account Please{" "}
-            <Link to="/register" className="underline underline-offset-2">
-              Sign Up
-            </Link>
-            .
-          </p>
+            </div>
+          </form>
         </div>
-      </div>
-      <div>
+      </main>
+      <div className="w-screen">
         <Footer />
       </div>
     </div>
