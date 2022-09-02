@@ -29,25 +29,33 @@ export const userLogin = (data, setButtonLoader) => async (dispatch) => {
       }
     }
   } catch (error) {
-    console.log(error);
+    window.notify(error.message, "error");
   } finally {
     setButtonLoader(false);
   }
 };
 export const fetchCurrentUser = (setPreLoader) => async (dispatch) => {
-  const userToken = {
-    method: "POST",
-    url: `${baseURL}auth/user-data`,
-    headers: {
-      token: localStorage.getItem("token"),
-    },
-  };
-  const userData = await axios.request(userToken);
-  if (userData.status === 200) {
-    dispatch({
-      type: LOGIN,
-      payload: userData.data.user,
-    });
+  try {
+    const userToken = {
+      method: "POST",
+      url: `${baseURL}auth/user-data`,
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    };
+    const userData = await axios.request(userToken);
+    if (userData.status === 200) {
+      dispatch({
+        type: LOGIN,
+        payload: userData.data.user,
+      });
+    }
+  } catch (error) {
+    window.notify(error.message, "error");
+  } finally {
+    setTimeout(() => {
+      setPreLoader(false);
+    }, 3000);
   }
 };
 export const userLogout = (setIsLoggingOut) => async (dispatch) => {};

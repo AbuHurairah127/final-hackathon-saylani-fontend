@@ -4,11 +4,13 @@ import React, { useEffect, useState } from "react";
 import Routing from "./routing/Routing";
 import { useDispatch } from "react-redux";
 import { fetchCurrentUser } from "./store/actions/authActions";
+import FullScreenLoader from "./components/fullScreenLoader/FullScreenLoader";
 
 function App() {
   const dispatch = useDispatch();
+  const [preLoader, setPreLoader] = useState(true);
   useEffect(() => {
-    dispatch(fetchCurrentUser());
+    dispatch(fetchCurrentUser(setPreLoader));
   });
   return (
     <div>
@@ -18,7 +20,7 @@ function App() {
           fontFamily: "work sans",
         }}
       >
-        <Routing />
+        {preLoader ? <FullScreenLoader /> : <Routing />}
       </div>
     </div>
   );
