@@ -71,5 +71,50 @@ export const userLogout = (setIsLoggingOut) => async (dispatch) => {
   } catch (error) {
     window.notify(error.massage, "error");
   } finally {
+    setIsLoggingOut(false);
   }
 };
+export const registerUser =
+  (registerData, setButtonLoader) => async (dispatch) => {
+    try {
+      setButtonLoader(true);
+      const options = {
+        method: "POST",
+        url: `${baseURL}auth/register`,
+        data: {
+          firstName: registerData.firstName,
+          lastName: registerData.lastName,
+          userName: registerData.userName,
+          email: registerData.email,
+          phoneNumber: registerData.phone,
+          password: registerData.password,
+        },
+      };
+      console.log(options.data);
+      const response = await axios.request(options);
+      console.log(response);
+      if (response.status === 200) {
+        localStorage.setItem("token", response.data.authToken);
+        const userToken = {
+          method: "POST",
+          url: `${baseURL}auth/user-data`,
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        };
+        const userData = await axios.request(userToken);
+        if (userData.status === 200) {
+          dispatch({
+            type: LOGIN,
+            payload: userData.data.user,
+          });
+          window.notify("User have been successfully registered.", "success");
+        }
+      }
+    } catch (error) {
+      window.notify(error.response.data, "error");
+      console.log(error.response.data);
+    } finally {
+      setButtonLoader(false);
+    }
+  };
