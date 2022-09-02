@@ -61,9 +61,15 @@ const Hero = (props) => {
             <Button label="Sell Property" />
           </Link>
         ) : (
-          <Link to="/login">
-            <Button label="Login" />
-          </Link>
+          <div className="flex items-center">
+            <Link to="/login">
+              <Button label="Login" />
+            </Link>
+            <span className="mx-4 text-xl text-white">or</span>
+            <Link to="/register">
+              <Button label="Register" />
+            </Link>
+          </div>
         )}
       </div>
     </div>
