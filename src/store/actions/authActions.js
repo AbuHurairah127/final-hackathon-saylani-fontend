@@ -113,7 +113,6 @@ export const registerUser =
       }
     } catch (error) {
       window.notify(error.response.data, "error");
-      console.log(error.response.data);
     } finally {
       setButtonLoader(false);
     }

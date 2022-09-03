@@ -11,7 +11,7 @@ function App() {
   const [preLoader, setPreLoader] = useState(true);
   useEffect(() => {
     dispatch(fetchCurrentUser(setPreLoader));
-  });
+  }, [dispatch]);
   return (
     <div>
       <div

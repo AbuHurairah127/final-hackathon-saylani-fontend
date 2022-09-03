@@ -3,15 +3,23 @@ import Button from "../../components/button/Button";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import ButtonLoader from "../../components/buttonLoader/ButtonLoader";
-
+import loginBG from "./../../assets/loginBG.png";
+import useAddProperty from "./useAddProperty";
 const AddProperty = () => {
+  const { onChangeHandler, propertyData, onSubmitHandler, buttonLoader } =
+    useAddProperty();
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: `linear-gradient(0deg,rgba(2, 48, 71, 0.95),rgba(0, 180, 216, 0.15)),url(${loginBG})`,
+      }}
+      className="bg-center bg-cover"
+    >
       <header>
         <Navbar />
       </header>
       <div
-        className="bg-[#F6F8F7] min-h-max pb-5 max-w-screen flex flex-col"
+        className=" min-h-max pb-5 max-w-screen flex flex-col"
         id="contactUs"
       >
         <div className="contactFormHeader w-full pt-8">
@@ -21,7 +29,7 @@ const AddProperty = () => {
             Add Here...
           </h1>
         </div>
-        <form>
+        <form onSubmit={(e) => onSubmitHandler(e)}>
           <div className="w-full flex flex-col items-center">
             <div className="w-[60vw] flex flex-row flex-wrap justify-between md:h-12 mt-5">
               <select
@@ -29,6 +37,10 @@ const AddProperty = () => {
                 id="propertyType"
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
                 required
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
+                value={propertyData.propertyType}
               >
                 <option value="">Select Property Type</option>
                 <option value="Shop">Shop</option>
@@ -43,11 +55,15 @@ const AddProperty = () => {
               </select>
               <input
                 type="number"
-                name="coveredArea"
-                id="coveredArea"
+                name="areaCovered"
+                id="areaCovered"
                 placeholder="Covered Area in sq ft."
                 required
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
+                value={propertyData.areaCovered}
               />
             </div>
             <div className="w-[60vw] flex flex-row flex-wrap justify-between md:h-12 mt-5">
@@ -58,12 +74,20 @@ const AddProperty = () => {
                 placeholder="Finished type e.g. furnished"
                 required
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={propertyData.finishedType}
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
               />
               <select
-                name="propertyType"
-                id="propertyType"
+                name="requirement"
+                id="requirement"
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
                 required
+                value={propertyData.requirement}
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
               >
                 <option value="">Wants to Sell or Rent Out</option>
 
@@ -78,6 +102,10 @@ const AddProperty = () => {
                 id="noOfBedRooms"
                 placeholder="No. of Bedrooms (Optional)"
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={propertyData.noOfBedRooms}
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
               />
               <input
                 type="number"
@@ -85,6 +113,10 @@ const AddProperty = () => {
                 id="noOfLivingRooms"
                 placeholder="No of Living Rooms (Optional)"
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={propertyData.noOfLivingRooms}
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
               />
             </div>
             <div className="w-[60vw] flex flex-row flex-wrap justify-between md:h-12 mt-5">
@@ -95,13 +127,21 @@ const AddProperty = () => {
                 placeholder="No of Bathrooms"
                 required
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={propertyData.noOfBathRooms}
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
               />
               <input
                 type="number"
-                name="noOfDiningAreas"
-                id="noOfDiningAreas"
+                name="noOfDiningRooms"
+                id="noOfDiningRooms"
                 placeholder="No. of Dining Areas (Optional)"
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={propertyData.noOfDiningRooms}
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
               />
             </div>
             <div className="w-[60vw] flex flex-row flex-wrap justify-between md:h-12 mt-5">
@@ -112,6 +152,10 @@ const AddProperty = () => {
                 placeholder="No of Reception Areas"
                 required
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={propertyData.noOfReceptionAreas}
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
               />
               <input
                 type="number"
@@ -120,9 +164,12 @@ const AddProperty = () => {
                 placeholder="No. of Kitchens"
                 required
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={propertyData.noOfKitchens}
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
               />
             </div>
-
             <div className="w-[60vw] flex flex-col justify-between items-center mt-5">
               <textarea
                 name="address"
@@ -130,6 +177,10 @@ const AddProperty = () => {
                 placeholder="Property Address"
                 className="w-full px-3 py-2 h-40 outline-0 border-2 rounded-sm"
                 required
+                value={propertyData.address}
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
               ></textarea>
             </div>
             <div className="w-[60vw] flex flex-row flex-wrap justify-between md:h-12 mt-5">
@@ -138,6 +189,10 @@ const AddProperty = () => {
                 id="city"
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2 "
                 required
+                value={propertyData.city}
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
               >
                 <option value="">Select The City</option>
                 <option value="Islamabad">Islamabad</option>
@@ -385,6 +440,10 @@ const AddProperty = () => {
                 placeholder="Set Asking Price"
                 required
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={propertyData.setAskingPrice}
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
               />
             </div>
             <div className="w-[60vw] flex flex-row justify-center mt-5">
