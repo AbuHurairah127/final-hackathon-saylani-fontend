@@ -1,4 +1,8 @@
-import { FETCH_PROPERTIES, ADD_PROPERTIES } from "../types/constants";
+import {
+  FETCH_PROPERTIES,
+  ADD_PROPERTIES,
+  DELETE_PROPERTIES,
+} from "../types/constants";
 
 let initialState = {
   allProperties: [],
@@ -20,12 +24,20 @@ const propertiesReducer = (state = initialState, action) => {
         allProperties: newPropertiesList,
       };
     }
+    case DELETE_PROPERTIES: {
+      let newPropertiesList = state.allProperties.filter(
+        (property) => property._id !== action.payload
+      );
+      return {
+        ...state,
+        allProperties: newPropertiesList,
+      };
+    }
     default:
       return {
         ...state,
       };
   }
-  return;
 };
 
 export default propertiesReducer;

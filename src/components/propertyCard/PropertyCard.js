@@ -2,10 +2,12 @@ import React from "react";
 import test from "./../../assets/test.jpg";
 import Button from "./../../components/button/Button";
 import { AiOutlineHeart, AiFillDelete, AiFillEdit } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { deleteProperties } from "../../store/actions/propertiesActions";
 const PropertyCard = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const cUser = useSelector((store) => store.authReducer.cUser);
   const isAuthenticated = useSelector(
     (store) => store.authReducer.isAuthenticated
@@ -15,6 +17,9 @@ const PropertyCard = (props) => {
       "You need to first login. Then you can access to other user's credentials or save any post to your wishlist."
     );
     navigate("/login");
+  };
+  const onDeleteHandler = (uid) => {
+    dispatch(deleteProperties(uid));
   };
   return (
     <div
@@ -61,7 +66,10 @@ const PropertyCard = (props) => {
                 <button>
                   <AiFillEdit size={28} color="#3a86ff" />
                 </button>
-                <button>
+                <button
+                  type="button"
+                  onClick={() => onDeleteHandler(props.data._id)}
+                >
                   <AiFillDelete size={28} color="red" />
                 </button>
               </>

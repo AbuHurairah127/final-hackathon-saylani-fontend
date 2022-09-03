@@ -1,5 +1,9 @@
 import axios from "axios";
-import { ADD_PROPERTIES, FETCH_PROPERTIES } from "../types/constants";
+import {
+  ADD_PROPERTIES,
+  DELETE_PROPERTIES,
+  FETCH_PROPERTIES,
+} from "../types/constants";
 const baseURL = process.env.REACT_APP_BASEURL;
 export const fetchAllProperties = (setPreLoader) => async (dispatch) => {
   try {
@@ -61,3 +65,24 @@ export const addProperty =
       window.notify(error, "error");
     }
   };
+export const deleteProperties = (uid) => async (dispatch) => {
+  try {
+    const options = {
+      method: "DELETE",
+      url: `${baseURL}properties/delete-property/${uid}`,
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    };
+    let response = await axios.request(options);
+    if (response.status === 200) {
+      window.notify(response.data.message, "success");
+      dispatch({
+        type: DELETE_PROPERTIES,
+        payload: uid,
+      });
+    }
+  } catch (error) {
+    window.notify(error.message, "error");
+  }
+};
