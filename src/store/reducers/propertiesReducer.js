@@ -1,7 +1,7 @@
-import { FETCH_PROPERTIES } from "../types/constants";
+import { FETCH_PROPERTIES, ADD_PROPERTIES } from "../types/constants";
 
 let initialState = {
-  properties: [],
+  allProperties: [],
 };
 const propertiesReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -9,10 +9,17 @@ const propertiesReducer = (state = initialState, action) => {
       let newPropertiesList = action.payload;
       return {
         ...state,
-        properties: newPropertiesList,
+        allProperties: newPropertiesList,
       };
     }
 
+    case ADD_PROPERTIES: {
+      let newPropertiesList = [...state.allProperties, action.payload];
+      return {
+        ...state,
+        allProperties: newPropertiesList,
+      };
+    }
     default:
       return {
         ...state,

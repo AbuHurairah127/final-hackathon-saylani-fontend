@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_PROPERTIES } from "../types/constants";
+import { ADD_PROPERTIES, FETCH_PROPERTIES } from "../types/constants";
 const baseURL = process.env.REACT_APP_BASEURL;
 export const fetchAllProperties = (setPreLoader) => async (dispatch) => {
   try {
@@ -18,6 +18,7 @@ export const fetchAllProperties = (setPreLoader) => async (dispatch) => {
     }, 2500);
   }
 };
+
 export const addProperty =
   (propertyData, ownerData, loader) => async (dispatch) => {
     try {
@@ -50,7 +51,11 @@ export const addProperty =
       };
       let response = await axios.request(options);
       if (response.status === 200) {
-        console.log(response.data.response.body);
+        dispatch({
+          type: ADD_PROPERTIES,
+          payload: options.data,
+        });
+        window.notify(response.data.response.body, "success");
       }
     } catch (error) {
       window.notify(error, "error");

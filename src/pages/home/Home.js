@@ -7,7 +7,7 @@ import useHome from "./useHome";
 import PropertyCard from "../../components/propertyCard/PropertyCard";
 import Lottie from "lottie-react";
 import search from "./../../assets/38061-search.json";
-const Home = (props) => {
+const Home = () => {
   const { properties } = useHome();
 
   return (

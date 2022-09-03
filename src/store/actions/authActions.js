@@ -29,7 +29,8 @@ export const userLogin = (data, setButtonLoader) => async (dispatch) => {
       }
     }
   } catch (error) {
-    window.notify(error.message, "error");
+    window.notify(error.response.data.error, "error");
+    console.log(error);
   } finally {
     setButtonLoader(false);
   }

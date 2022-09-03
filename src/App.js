@@ -12,7 +12,11 @@ function App() {
   const [preLoader, setPreLoader] = useState(true);
   useEffect(() => {
     dispatch(fetchCurrentUser());
-    dispatch(fetchAllProperties(setPreLoader));
+    if (localStorage.getItem("token")) {
+      dispatch(fetchAllProperties(setPreLoader));
+    } else {
+      dispatch(fetchAllProperties(setPreLoader));
+    }
   }, [dispatch]);
 
   return (
