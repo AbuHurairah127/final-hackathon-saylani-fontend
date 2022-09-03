@@ -1,7 +1,7 @@
 import axios from "axios";
 import { FETCH_PROPERTIES } from "../types/constants";
 const baseURL = process.env.REACT_APP_BASEURL;
-export const fetchAllProperties = () => async (dispatch) => {
+export const fetchAllProperties = (setPreLoader) => async (dispatch) => {
   try {
     const response = await axios.get(`${baseURL}properties/fetch-all`);
     if (response.status === 200) {
@@ -12,6 +12,10 @@ export const fetchAllProperties = () => async (dispatch) => {
     }
   } catch (error) {
     window.notify(error.message, "error");
+  } finally {
+    setTimeout(() => {
+      setPreLoader(false);
+    }, 2500);
   }
 };
 export const addProperty =

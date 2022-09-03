@@ -34,7 +34,7 @@ export const userLogin = (data, setButtonLoader) => async (dispatch) => {
     setButtonLoader(false);
   }
 };
-export const fetchCurrentUser = (setPreLoader) => async (dispatch) => {
+export const fetchCurrentUser = () => async (dispatch) => {
   try {
     const userAuthToken = localStorage.getItem("token");
     if (userAuthToken) {
@@ -55,10 +55,6 @@ export const fetchCurrentUser = (setPreLoader) => async (dispatch) => {
     }
   } catch (error) {
     window.notify(error.message, "error");
-  } finally {
-    setTimeout(() => {
-      setPreLoader(false);
-    }, 3000);
   }
 };
 export const userLogout = (setIsLoggingOut) => async (dispatch) => {
