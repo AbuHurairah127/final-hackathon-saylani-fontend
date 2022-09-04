@@ -3,31 +3,46 @@ import Button from "../../components/button/Button";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import ButtonLoader from "../../components/buttonLoader/ButtonLoader";
-
+import loginBG from "./../../assets/loginBG.png";
+import useFilterProperty from "./useFilterProperty";
 const FilterProperty = () => {
+  const { filterData, onChangeHandler, onSubmitHandler } = useFilterProperty();
   return (
-    <div className="min-h-[100vh] flex flex-col justify-between">
+    <div
+      className="max-w-screen flex flex-col items-center justify-between h-[100vh] bg-center bg-cover"
+      style={{
+        fontFamily: "work sans",
+        backgroundImage: `linear-gradient(0deg,rgba(2, 48, 71, 0.95),rgba(0, 180, 216, 0.15)),url(${loginBG})`,
+      }}
+    >
       <header>
         <Navbar />
       </header>
       <div
-        className="bg-[#F6F8F7] min-h-max pb-5 max-w-screen flex flex-col"
+        className="min-h-max p-5 w-max rounded-md flex flex-col"
         id="contactUs"
+        style={{
+          boxShadow:
+            "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+          backgroundColor: "rgba(2, 48, 71, 0.45)",
+        }}
       >
         <div className="contactFormHeader w-full pt-8">
           <h1 className="text-center text-4xl font-bold">
-            Want to sell or rent out a property
+            Want to filter out for a specific type of property
             <br />
-            Add Here...
+            Search Here...
           </h1>
         </div>
-        <form>
+        <form onSubmit={(e) => onSubmitHandler(e)}>
           <div className="w-full flex flex-col items-center">
             <div className="w-[60vw] flex flex-row flex-wrap justify-between md:h-12 mt-5">
               <select
                 name="propertyType"
                 id="propertyType"
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={filterData.propertyType}
+                onChange={(e) => onChangeHandler(e)}
               >
                 <option value="">Select Property Type</option>
                 <option value="Shop">Shop</option>
@@ -41,23 +56,26 @@ const FilterProperty = () => {
                 </option>
               </select>
               <select
-                name="propertyType"
-                id="propertyType"
+                name="requirement"
+                id="requirement"
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={filterData.requirement}
+                onChange={(e) => onChangeHandler(e)}
               >
                 <option value="">Wants to Sell or Rent Out</option>
-
-                <option value="Sale">Sale</option>
-                <option value="Rent Out">Rent Out</option>
+                <option value="Sale">For Sale</option>
+                <option value="Rent Out">For Rent</option>
               </select>
             </div>
             <div className="w-[60vw] flex flex-row flex-wrap justify-between md:h-12 mt-5">
               <input
-                type="text"
+                type="number"
                 name="minCoveredArea"
                 id="minCoveredArea"
                 placeholder="Minimum Covered Area in sq ft."
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={filterData.minCoveredArea}
+                onChange={(e) => onChangeHandler(e)}
               />
               <input
                 type="number"
@@ -65,6 +83,8 @@ const FilterProperty = () => {
                 id="maxCoveredArea"
                 placeholder="Maximum Covered Area in sq ft."
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={filterData.maxCoveredArea}
+                onChange={(e) => onChangeHandler(e)}
               />
             </div>
             <div className="w-[60vw] flex flex-row flex-wrap justify-between md:h-12 mt-5">
@@ -74,6 +94,8 @@ const FilterProperty = () => {
                 id="minimumAskingPrice"
                 placeholder="Minimum Price"
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={filterData.minimumAskingPrice}
+                onChange={(e) => onChangeHandler(e)}
               />
               <input
                 type="number"
@@ -81,6 +103,8 @@ const FilterProperty = () => {
                 id="maximumAskingPrice"
                 placeholder="Maximum Price"
                 className="md:w-[28vw] outline-0 px-4 py-2 rounded-sm border-2"
+                value={filterData.maximumAskingPrice}
+                onChange={(e) => onChangeHandler(e)}
               />
             </div>
 
@@ -89,6 +113,8 @@ const FilterProperty = () => {
                 name="city"
                 id="city"
                 className="w-full outline-0 px-4 py-2 rounded-sm border-2 "
+                value={filterData.city}
+                onChange={(e) => onChangeHandler(e)}
               >
                 <option value="">Select The City</option>
                 <option value="Islamabad">Islamabad</option>
@@ -336,7 +362,7 @@ const FilterProperty = () => {
           </div>
         </form>
       </div>
-      <footer className="">
+      <footer className="w-screen">
         <Footer />
       </footer>
     </div>

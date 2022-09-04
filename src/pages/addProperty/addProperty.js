@@ -31,7 +31,7 @@ const AddProperty = () => {
           }}
         >
           <div className="contactFormHeader w-full pt-8">
-            <h1 className="text-center text-sky-200 text-4xl font-bold">
+            <h1 className="text-center text-4xl font-bold">
               Want to sell or rent out a property
               <br />
               Add Here...
