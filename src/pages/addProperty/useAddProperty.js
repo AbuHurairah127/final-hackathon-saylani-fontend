@@ -34,6 +34,24 @@ const useAddProperty = () => {
     setButtonLoader(true);
     setPropertyData({ ...propertyData, [e.target.name]: e.target.value });
     dispatch(addProperty(propertyData, ownerData, setButtonLoader));
+    setPropertyData({
+      requirement: "",
+      address: "",
+      city: "",
+      finishedType: "",
+      propertyType: "",
+      areaCovered: "",
+      noOfBedRooms: "",
+      noOfBathRooms: "",
+      noOfLivingRooms: "",
+      noOfDiningRooms: "",
+      noOfKitchens: "",
+      noOfReceptionAreas: "",
+      setAskingPrice: "",
+      ownerName: "",
+      ownerPhoneNumber: "",
+      ownerUID: "",
+    });
   };
   return { onChangeHandler, propertyData, onSubmitHandler, buttonLoader };
 };

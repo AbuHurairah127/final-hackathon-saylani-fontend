@@ -567,7 +567,9 @@ const UpdateModal = (props) => {
             </div>
             <div className="w-[60vw] flex flex-row justify-center mt-5">
               <Button
-                label={buttonLoader ? <ButtonLoader /> : "Update"}
+                label={
+                  buttonLoader ? <ButtonLoader color="#DE5C0B" /> : "Update"
+                }
                 type="submit"
               />
             </div>

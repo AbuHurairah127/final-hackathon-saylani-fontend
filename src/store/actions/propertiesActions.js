@@ -60,10 +60,13 @@ export const addProperty =
           type: ADD_PROPERTIES,
           payload: options.data,
         });
-        window.notify(response.data.response.body, "success");
+        window.notify(response.data.response.body.message, "success");
+        console.log(response);
       }
     } catch (error) {
       window.notify(error, "error");
+    } finally {
+      loader(false);
     }
   };
 export const deleteProperties = (uid) => async (dispatch) => {
