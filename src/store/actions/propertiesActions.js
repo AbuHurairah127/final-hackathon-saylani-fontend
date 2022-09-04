@@ -3,6 +3,7 @@ import {
   ADD_PROPERTIES,
   DELETE_PROPERTIES,
   FETCH_PROPERTIES,
+  UPDATE_PROPERTIES,
 } from "../types/constants";
 const baseURL = process.env.REACT_APP_BASEURL;
 export const fetchAllProperties = (setPreLoader) => async (dispatch) => {
@@ -118,8 +119,14 @@ export const updateProperty =
         },
       };
       const response = await axios.request(options);
-      window.notify(response.data.message, "success");
-      setIsModalOpen(false);
+      if (response.status === 200) {
+        dispatch({
+          type: UPDATE_PROPERTIES,
+          payload: propertyData,
+        });
+        window.notify(response.data.message, "success");
+        setIsModalOpen(false);
+      }
     } catch (error) {
       window.notify(error.message, "error");
     } finally {

@@ -2,6 +2,7 @@ import {
   FETCH_PROPERTIES,
   ADD_PROPERTIES,
   DELETE_PROPERTIES,
+  UPDATE_PROPERTIES,
 } from "../types/constants";
 
 let initialState = {
@@ -28,6 +29,19 @@ const propertiesReducer = (state = initialState, action) => {
       let newPropertiesList = state.allProperties.filter(
         (property) => property._id !== action.payload
       );
+      return {
+        ...state,
+        allProperties: newPropertiesList,
+      };
+    }
+    case UPDATE_PROPERTIES: {
+      let newPropertiesList = state.allProperties.map((item) => {
+        if (item._id === action.payload._id) {
+          return action.payload;
+        } else {
+          return item;
+        }
+      });
       return {
         ...state,
         allProperties: newPropertiesList,
