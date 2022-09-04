@@ -86,3 +86,43 @@ export const deleteProperties = (uid) => async (dispatch) => {
     window.notify(error.message, "error");
   }
 };
+export const updateProperty =
+  (propertyData, setButtonLoader, setIsModalOpen) => async (dispatch) => {
+    try {
+      const options = {
+        method: "PUT",
+        url: `${baseURL}properties/update-property/${propertyData._id}`,
+        headers: {
+          "Content-Type": "application/json",
+          token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMwYzFhYTJkZmZmNTVmYzNiY2E0NmVmIn0sImlhdCI6MTY2MTczODM3MH0.YkwEbJDSM_DfF7M1YWFZjcfs3tUhNENIT9Q6VFPg18o",
+        },
+        data: {
+          requirement: propertyData.requirement,
+          address: propertyData.address,
+          city: propertyData.city,
+          finishedType: propertyData.finishedType,
+          propertyType: propertyData.propertyType,
+          areaCovered: propertyData.areaCovered,
+          noOfBedRooms: propertyData.noOfBedRooms,
+          noOfBathrooms: propertyData.noOfBathRooms,
+          noOfLivingRooms: propertyData.noOfLivingRooms,
+          noOfDiningRooms: propertyData.noOfDiningRooms,
+          noOfKitchens: propertyData.noOfKitchens,
+          noOfReceptionAreas: propertyData.noOfReceptionAreas,
+          setAskingPrice: propertyData.setAskingPrice,
+          ownerName: propertyData.ownerName,
+          ownerPhoneNumber: propertyData.ownerPhoneNumber,
+          ownerUID: propertyData.ownerUID,
+          updatedAt: new Date(),
+        },
+      };
+      const response = await axios.request(options);
+      window.notify(response.data.message, "success");
+      setIsModalOpen(false);
+    } catch (error) {
+      window.notify(error.message, "error");
+    } finally {
+      setButtonLoader(false);
+    }
+  };
