@@ -8,6 +8,7 @@ import FilterProperty from "../pages/filterProperty/FilterProperty";
 import PrivateRoutes from "./PrivateRoutes";
 import Register from "../pages/register/Register";
 import MyProperties from "../pages/myProperties/MyProperties";
+import PropertyPage from "../pages/propertyPage/PropertyPage";
 
 const Routing = (props) => {
   const isUserLoggined = useSelector(
@@ -29,6 +30,10 @@ const Routing = (props) => {
           <Route
             path="/add-properties"
             element={<PrivateRoutes Component={AddProperty} />}
+          />
+          <Route
+            path="/property"
+            element={<PrivateRoutes Component={PropertyPage} />}
           />
           <Route
             path="/my-properties"
