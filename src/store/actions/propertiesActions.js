@@ -136,3 +136,18 @@ export const updateProperty =
       setButtonLoader(false);
     }
   };
+export const likeProperty = (propertyData, userUID) => {
+  console.log(propertyData);
+  propertyData = {
+    ...propertyData,
+    likes: propertyData.likes + 1,
+    likedByUsers: [...propertyData.likedByUsers, userUID],
+  };
+  console.log(propertyData);
+  console.log(propertyData.likedByUsers);
+  return {
+    type: UPDATE_PROPERTIES,
+    payload: propertyData,
+  };
+};
+export const dislikeProperty = () => async (dispatch) => {};

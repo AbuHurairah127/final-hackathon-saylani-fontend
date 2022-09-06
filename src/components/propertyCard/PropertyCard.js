@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import test from "./../../assets/test.jpg";
 import Button from "./../../components/button/Button";
-import { AiOutlineHeart, AiFillDelete, AiFillEdit } from "react-icons/ai";
+import {
+  AiOutlineHeart,
+  AiFillDelete,
+  AiFillEdit,
+  AiFillHeart,
+} from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteProperties } from "../../store/actions/propertiesActions";
+import {
+  deleteProperties,
+  dislikeProperty,
+  likeProperty,
+} from "../../store/actions/propertiesActions";
 import UpdateModal from "../modal/Modal";
 const PropertyCard = (props) => {
   const navigate = useNavigate();
@@ -27,6 +36,13 @@ const PropertyCard = (props) => {
   };
   const onDeleteHandler = (uid) => {
     dispatch(deleteProperties(uid));
+  };
+  const onCTALikeHandler = (propertyData) => {
+    if (props.data.likedByUsers.includes(cUser._id)) {
+      dispatch(dislikeProperty(propertyData, cUser._id));
+    } else {
+      dispatch(likeProperty(propertyData, cUser._id));
+    }
   };
   return (
     <>
@@ -76,7 +92,6 @@ const PropertyCard = (props) => {
                     type="button"
                     onClick={() => {
                       onUpdateHandler();
-                      console.log(props.data);
                     }}
                   >
                     <AiFillEdit size={28} color="#3a86ff" />
@@ -90,9 +105,24 @@ const PropertyCard = (props) => {
                 </>
               ) : (
                 <>
-                  <button>
-                    <AiOutlineHeart size={25} color="red" />
-                  </button>
+                  <div className="flex flex-col">
+                    {props.data.likedByUsers.includes(cUser._id) ? (
+                      <button
+                        type="button"
+                        onClick={() => onCTALikeHandler(props.data)}
+                      >
+                        <AiFillHeart size={25} color="red" />
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => onCTALikeHandler(props.data)}
+                      >
+                        <AiOutlineHeart size={25} color="red" />
+                      </button>
+                    )}
+                    <p className="text-white">{props.data.likes} Likes</p>
+                  </div>
                   <a
                     href={`tel:${props.data.ownerPhoneNumber}`}
                     className="lg:hidden"
