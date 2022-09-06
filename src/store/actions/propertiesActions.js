@@ -136,18 +136,59 @@ export const updateProperty =
       setButtonLoader(false);
     }
   };
-export const likeProperty = (propertyData, userUID) => {
-  console.log(propertyData);
-  propertyData = {
-    ...propertyData,
-    likes: propertyData.likes + 1,
-    likedByUsers: [...propertyData.likedByUsers, userUID],
-  };
-  console.log(propertyData);
-  console.log(propertyData.likedByUsers);
-  return {
-    type: UPDATE_PROPERTIES,
-    payload: propertyData,
-  };
+export const likeProperty = (propertyData, userUID) => async (dispatch) => {
+  try {
+    propertyData = {
+      ...propertyData,
+      likes: propertyData.likes + 1,
+      likedByUsers: [...propertyData.likedByUsers, userUID],
+    };
+    const options = {
+      method: "PUT",
+      url: `${baseURL}properties/like-property/${propertyData._id}`,
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+      data: {
+        likes: propertyData.likes,
+        likedByUsers: propertyData.likedByUsers,
+      },
+    };
+    dispatch({
+      type: UPDATE_PROPERTIES,
+      payload: propertyData,
+    });
+    await axios.request(options);
+  } catch (error) {
+    console.log(error);
+  }
 };
-export const dislikeProperty = () => async (dispatch) => {};
+export const dislikeProperty = (propertyData, userUID) => async (dispatch) => {
+  try {
+    let likers = propertyData.likedByUsers.indexOf(userUID);
+    propertyData.likedByUsers.splice(likers, 1);
+    propertyData = {
+      ...propertyData,
+      likes: propertyData.likes - 1,
+      likedByUsers: propertyData.likedByUsers,
+    };
+    const options = {
+      method: "PUT",
+      url: `${baseURL}properties/like-property/${propertyData._id}`,
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+      data: {
+        likes: propertyData.likes,
+        likedByUsers: propertyData.likedByUsers,
+      },
+    };
+    dispatch({
+      type: UPDATE_PROPERTIES,
+      payload: propertyData,
+    });
+    await axios.request(options);
+  } catch (error) {
+    console.log(error);
+  }
+};
