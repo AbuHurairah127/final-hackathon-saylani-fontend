@@ -13,14 +13,14 @@ const PropertyPage = () => {
       <header className="z-50">
         <Navbar />
       </header>
-      <main className="w-full h-full flex">
-        <div className="h-full max-w-[60vw]  left">
+      <main className="w-full h-full flex flex-wrap">
+        <div className="h-full w-full lg:max-w-[60vw]  left">
           <img
             src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
             alt=""
           />
         </div>
-        <div className="right  h-full w-[40vw] p-3 flex flex-col justify-center items-center">
+        <div className="right w-full h-full lg:w-[40vw] p-3 flex flex-col justify-center items-center">
           <p className="text-xl text-[#f5843e] text-center underline underline-offset-4 pb-5">
             Owner Details
           </p>
