@@ -6,8 +6,13 @@ import ButtonLoader from "../../components/buttonLoader/ButtonLoader";
 import loginBG from "./../../assets/loginBG.png";
 import useAddProperty from "./useAddProperty";
 const AddProperty = () => {
-  const { onChangeHandler, propertyData, onSubmitHandler, buttonLoader } =
-    useAddProperty();
+  const {
+    onChangeHandler,
+    propertyData,
+    onSubmitHandler,
+    buttonLoader,
+    onPhotoUploadHandler,
+  } = useAddProperty();
   return (
     <div
       style={{
@@ -457,6 +462,12 @@ const AddProperty = () => {
                     onChangeHandler(e);
                   }}
                 />
+              </div>
+              <div className="w-[60vw] flex flex-col justify-between items-center mt-5">
+                <input type="file" alt="" />
+                <div className="w-[60vw] h-fit">
+                  <img src={propertyData.image} alt="Property" />
+                </div>
               </div>
               <div className="w-[60vw] flex flex-row justify-center my-5">
                 <Button

@@ -22,6 +22,7 @@ const useAddProperty = () => {
     ownerName: "",
     ownerPhoneNumber: "",
     ownerUID: "",
+    photo: null,
   });
   const onChangeHandler = (e) => {
     setPropertyData({
@@ -29,10 +30,15 @@ const useAddProperty = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const onPhotoUploadHandler = (e) => {};
   const onSubmitHandler = (e) => {
     e.preventDefault();
     setButtonLoader(true);
-    setPropertyData({ ...propertyData, [e.target.name]: e.target.value });
+    setPropertyData({
+      ...propertyData,
+      [e.target.name]: e.target.value,
+      // photo: e.target.files[0],
+    });
     dispatch(addProperty(propertyData, ownerData, setButtonLoader));
     setPropertyData({
       requirement: "",
@@ -51,9 +57,16 @@ const useAddProperty = () => {
       ownerName: "",
       ownerPhoneNumber: "",
       ownerUID: "",
+      photo: null,
     });
   };
-  return { onChangeHandler, propertyData, onSubmitHandler, buttonLoader };
+  return {
+    onChangeHandler,
+    propertyData,
+    onSubmitHandler,
+    buttonLoader,
+    onPhotoUploadHandler,
+  };
 };
 
 export default useAddProperty;
