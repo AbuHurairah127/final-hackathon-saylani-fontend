@@ -4,10 +4,12 @@ import {
   DELETE_PROPERTIES,
   UPDATE_PROPERTIES,
   FILTER_PROPERTIES,
+  SELECT_PROPERTY,
 } from "../types/constants";
 
 let initialState = {
   allProperties: [],
+  selectedProperty: null,
 };
 const propertiesReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -123,6 +125,13 @@ const propertiesReducer = (state = initialState, action) => {
       return {
         ...state,
         allProperties: newPropertiesList,
+      };
+    }
+    case SELECT_PROPERTY: {
+      let newSelectedProperty = action.payload;
+      return {
+        ...state,
+        selectedProperty: newSelectedProperty,
       };
     }
     default:

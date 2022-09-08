@@ -13,36 +13,51 @@ import {
   deleteProperties,
   dislikeProperty,
   likeProperty,
+  selectProperty,
 } from "../../store/actions/propertiesActions";
 import UpdateModal from "../modal/Modal";
 const PropertyCard = (props) => {
+  console.log(
+    "🚀 ~ file: PropertyCard.js ~ line 20 ~ PropertyCard ~ props",
+    props.data
+  );
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cUser = useSelector((store) => store.authReducer.cUser);
   const isAuthenticated = useSelector(
     (store) => store.authReducer.isAuthenticated
   );
+
   const [updatedPropertyData, setUpdatedPropertyData] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const onUpdateHandler = () => {
+  const onUpdateHandler = (e) => {
+    e.stopPropagation();
     setIsModalOpen(true);
     setUpdatedPropertyData(props.data);
   };
-  const redirectToLogin = () => {
+  const redirectToLogin = (e) => {
+    e.stopPropagation();
     window.notify(
       "You need to first login. Then you can access to other user's credentials or save any post to your wishlist."
     );
     navigate("/login");
   };
-  const onDeleteHandler = (uid) => {
+  const onDeleteHandler = (uid, e) => {
+    e.stopPropagation();
     dispatch(deleteProperties(uid));
   };
-  const onCTALikeHandler = (propertyData) => {
+  const onCTALikeHandler = (propertyData, e) => {
+    e.stopPropagation();
     if (props.data.likedByUsers.includes(cUser._id)) {
       dispatch(dislikeProperty(propertyData, cUser._id));
     } else {
       dispatch(likeProperty(propertyData, cUser._id));
     }
+  };
+  const leadToPropertyPage = (propertyData, e) => {
+    e.stopPropagation();
+    dispatch(selectProperty(propertyData));
+    navigate("/property");
   };
   return (
     <>
@@ -51,6 +66,7 @@ const PropertyCard = (props) => {
         style={{
           backgroundImage: `url(${test})`,
         }}
+        onClick={(e) => leadToPropertyPage(props.data, e)}
       >
         <div
           className="info-section w-full pt-12 pb-4 rounded-md px-1 h-full lg:translate-y-[42%] lg:group-hover:translate-y-[0%] lg:group-focus-within:translate-y-[0%] transition-all duration-700 ease-in-out delay-200"
@@ -90,15 +106,15 @@ const PropertyCard = (props) => {
                 <>
                   <button
                     type="button"
-                    onClick={() => {
-                      onUpdateHandler();
+                    onClick={(e) => {
+                      onUpdateHandler(e);
                     }}
                   >
                     <AiFillEdit size={28} color="#3a86ff" />
                   </button>
                   <button
                     type="button"
-                    onClick={() => onDeleteHandler(props.data._id)}
+                    onClick={(e) => onDeleteHandler(props.data._id, e)}
                   >
                     <AiFillDelete size={28} color="red" />
                   </button>
@@ -109,14 +125,14 @@ const PropertyCard = (props) => {
                     {props.data.likedByUsers.includes(cUser._id) ? (
                       <button
                         type="button"
-                        onClick={() => onCTALikeHandler(props.data)}
+                        onClick={(e) => onCTALikeHandler(props.data, e)}
                       >
                         <AiFillHeart size={25} color="red" />
                       </button>
                     ) : (
                       <button
                         type="button"
-                        onClick={() => onCTALikeHandler(props.data)}
+                        onClick={(e) => onCTALikeHandler(props.data, e)}
                       >
                         <AiOutlineHeart size={25} color="red" />
                       </button>

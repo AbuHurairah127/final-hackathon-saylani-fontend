@@ -4,6 +4,7 @@ import {
   DELETE_PROPERTIES,
   FETCH_PROPERTIES,
   UPDATE_PROPERTIES,
+  SELECT_PROPERTY,
 } from "../types/constants";
 const baseURL = process.env.REACT_APP_BASEURL;
 export const fetchAllProperties = (setPreLoader) => async (dispatch) => {
@@ -52,6 +53,7 @@ export const addProperty =
           ownerPhoneNumber: ownerData.phoneNumber,
           ownerName: ownerData.firstName,
           ownerUID: ownerData._id,
+          likes: 0,
         },
       };
       let response = await axios.request(options);
@@ -191,4 +193,10 @@ export const dislikeProperty = (propertyData, userUID) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
+};
+export const selectProperty = (propertyData) => {
+  return {
+    type: SELECT_PROPERTY,
+    payload: propertyData,
+  };
 };
