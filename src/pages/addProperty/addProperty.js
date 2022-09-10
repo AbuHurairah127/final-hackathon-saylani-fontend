@@ -474,10 +474,14 @@ const AddProperty = () => {
                     onPhotoChangeHandler(e);
                   }}
                 />
-                {propertyData.photo && <p>{propertyData.photo.name}</p>}
-                <button type="button" onClick={(e) => onPhotoUploadHandler(e)}>
-                  upload photo
-                </button>
+                {propertyData.photo && (
+                  <>
+                    <p>{propertyData.photo.name}</p>
+                    <p className="text-red-500">
+                      Note: This Photo can not be updated!
+                    </p>
+                  </>
+                )}
               </div>
               <div className="w-[60vw] flex flex-row justify-center my-5">
                 <Button

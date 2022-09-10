@@ -8,7 +8,7 @@ import {
 } from "../types/constants";
 import { storage } from "./../../config/firebase";
 import { v4 } from "uuid";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const baseURL = process.env.REACT_APP_BASEURL;
 
 export const fetchAllProperties = (setPreLoader) => async (dispatch) => {
@@ -33,6 +33,17 @@ export const addProperty =
   (propertyData, ownerData, loader) => async (dispatch) => {
     try {
       loader(true);
+      const storageRef = ref(
+        storage,
+        `images/${propertyData.photo.name + v4()}`
+      );
+
+      const image = await uploadBytes(storageRef, propertyData.photo);
+      let downloadURL;
+      if (image) {
+        console.log(image);
+        downloadURL = await getDownloadURL(storageRef);
+      }
       const userToken = localStorage.getItem("token");
       const options = {
         method: "POST",
@@ -58,6 +69,7 @@ export const addProperty =
           ownerName: ownerData.firstName,
           ownerUID: ownerData._id,
           likes: 0,
+          photoURL: downloadURL,
         },
       };
       let response = await axios.request(options);
@@ -67,7 +79,6 @@ export const addProperty =
           payload: options.data,
         });
         window.notify(response.data.response.body.message, "success");
-        console.log(response);
       }
     } catch (error) {
       window.notify(error, "error");

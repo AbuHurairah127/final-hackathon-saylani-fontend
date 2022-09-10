@@ -45,6 +45,7 @@ const useAddProperty = () => {
       ...propertyData,
       [e.target.name]: e.target.value,
     });
+    onPhotoUploadHandler(e);
     dispatch(addProperty(propertyData, ownerData, setButtonLoader));
     setPropertyData({
       requirement: "",
@@ -71,11 +72,13 @@ const useAddProperty = () => {
       ...propertyData,
       photo: e.target.files,
     });
-    const storageRef = ref(storage, `images/${propertyData.photo.name}`);
-    uploadBytes(storageRef, propertyData.photo).then(() => {
-      alert("Uploaded a blob or file!");
-    });
-    console.log(propertyData.photo);
+    // const storageRef = ref(storage, `images/${propertyData.photo.name}`);
+    // try {
+    //   const image = await uploadBytes(storageRef, propertyData.photo);
+    //   console.log(image);
+    //   alert("uploaded pic");
+    // } catch (error) {}
+    // // console.log(propertyData.photo);
   };
   return {
     onChangeHandler,
