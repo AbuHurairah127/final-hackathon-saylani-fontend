@@ -64,7 +64,7 @@ const PropertyCard = (props) => {
       <div
         className="group propertyCard w-[30ch] max-h-[425px] rounded-md my-3 bg-[#274773] shadow-md shadow-[#112239] bg-cover bg-no-repeat bg-center pt-[1rem] text-white lg:hover:scale-105 lg:focus-within:scale-105 transition-all duration-300 cursor-pointer overflow-hidden"
         style={{
-          backgroundImage: `url(${test})`,
+          backgroundImage: `url(${props.data.photoURL})`,
         }}
         onClick={(e) => leadToPropertyPage(props.data, e)}
       >
