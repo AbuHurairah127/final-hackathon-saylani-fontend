@@ -5,6 +5,6 @@ export const navLinks = [
   { label: "Home", hashLink: "/" },
   { label: "Sell Properties", hashLink: "/add-properties" },
   { label: "My Properties", hashLink: "/my-properties" },
-  { label: <AiFillHeart size={25} />, hashLink: "/filter-properties" },
+  { label: <AiFillHeart size={25} />, hashLink: "/liked-properties" },
   { label: <AiOutlineSearch size={25} />, hashLink: "/filter-properties" },
 ];

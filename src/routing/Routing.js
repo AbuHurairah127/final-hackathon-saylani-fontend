@@ -9,6 +9,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import Register from "../pages/register/Register";
 import MyProperties from "../pages/myProperties/MyProperties";
 import PropertyPage from "../pages/propertyPage/PropertyPage";
+import LikedProperties from "../pages/likedProperties/LikedProperties";
 
 const Routing = (props) => {
   const isUserLoggined = useSelector(
@@ -40,6 +41,7 @@ const Routing = (props) => {
             element={<PrivateRoutes Component={MyProperties} />}
           />
           <Route path="/filter-properties" element={<FilterProperty />} />
+          <Route path="/liked-properties" element={<LikedProperties />} />
         </Routes>
       </main>
     </BrowserRouter>
