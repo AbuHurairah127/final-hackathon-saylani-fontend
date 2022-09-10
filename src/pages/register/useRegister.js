@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { registerUser, userLogin } from "../../store/actions/authActions";
+import { registerUser } from "../../store/actions/authActions";
 const useRegister = () => {
   const [buttonLoading, setButtonLoading] = useState(false);
   const dispatch = useDispatch();

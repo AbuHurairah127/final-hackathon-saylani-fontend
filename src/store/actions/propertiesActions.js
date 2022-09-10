@@ -6,7 +6,11 @@ import {
   UPDATE_PROPERTIES,
   SELECT_PROPERTY,
 } from "../types/constants";
+import { storage } from "./../../config/firebase";
+import { v4 } from "uuid";
+import { ref, uploadBytes } from "firebase/storage";
 const baseURL = process.env.REACT_APP_BASEURL;
+
 export const fetchAllProperties = (setPreLoader) => async (dispatch) => {
   try {
     const response = await axios.get(`${baseURL}properties/fetch-all`);

@@ -2,7 +2,6 @@ import React from "react";
 import Button from "../../components/button/Button";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
-import ButtonLoader from "../../components/buttonLoader/ButtonLoader";
 import loginBG from "./../../assets/loginBG.png";
 import useFilterProperty from "./useFilterProperty";
 const FilterProperty = () => {

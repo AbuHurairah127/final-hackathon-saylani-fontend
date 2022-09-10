@@ -11,6 +11,7 @@ const AddProperty = () => {
     propertyData,
     onSubmitHandler,
     buttonLoader,
+    onPhotoChangeHandler,
     onPhotoUploadHandler,
   } = useAddProperty();
   return (
@@ -464,10 +465,19 @@ const AddProperty = () => {
                 />
               </div>
               <div className="w-[60vw] flex flex-col justify-between items-center mt-5">
-                <input type="file" alt="" />
-                <div className="w-[60vw] h-fit">
-                  <img src={propertyData.image} alt="Property" />
-                </div>
+                <input
+                  type="file"
+                  alt=""
+                  accept="image/*"
+                  required
+                  onChange={(e) => {
+                    onPhotoChangeHandler(e);
+                  }}
+                />
+                {propertyData.photo && <p>{propertyData.photo.name}</p>}
+                <button type="button" onClick={(e) => onPhotoUploadHandler(e)}>
+                  upload photo
+                </button>
               </div>
               <div className="w-[60vw] flex flex-row justify-center my-5">
                 <Button
