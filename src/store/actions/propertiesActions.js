@@ -8,7 +8,12 @@ import {
 } from "../types/constants";
 import { storage } from "./../../config/firebase";
 import { v4 } from "uuid";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+} from "firebase/storage";
 const baseURL = process.env.REACT_APP_BASEURL;
 
 export const fetchAllProperties = (setPreLoader) => async (dispatch) => {
@@ -33,10 +38,8 @@ export const addProperty =
   (propertyData, ownerData, loader) => async (dispatch) => {
     try {
       loader(true);
-      const storageRef = ref(
-        storage,
-        `images/${propertyData.photo.name + v4()}`
-      );
+      const propertyPhotoRef = propertyData.photo.name + v4();
+      const storageRef = ref(storage, `images/${propertyPhotoRef}`);
 
       const image = await uploadBytes(storageRef, propertyData.photo);
       let downloadURL;
@@ -70,6 +73,7 @@ export const addProperty =
           ownerUID: ownerData._id,
           likes: 0,
           photoURL: downloadURL,
+          photoRef: propertyPhotoRef,
         },
       };
       let response = await axios.request(options);
@@ -86,8 +90,10 @@ export const addProperty =
       loader(false);
     }
   };
-export const deleteProperties = (uid) => async (dispatch) => {
+export const deleteProperties = (uid, refToPhoto) => async (dispatch) => {
   try {
+    const photoRef = ref(storage, `images/${refToPhoto}`);
+    const deletePhoto = await deleteObject(photoRef);
     const options = {
       method: "DELETE",
       url: `${baseURL}properties/delete-property/${uid}`,

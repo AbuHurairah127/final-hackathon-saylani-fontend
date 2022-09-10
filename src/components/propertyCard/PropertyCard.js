@@ -42,9 +42,9 @@ const PropertyCard = (props) => {
     );
     navigate("/login");
   };
-  const onDeleteHandler = (uid, e) => {
+  const onDeleteHandler = (uid, photoRef, e) => {
     e.stopPropagation();
-    dispatch(deleteProperties(uid));
+    dispatch(deleteProperties(uid, photoRef));
   };
   const onCTALikeHandler = (propertyData, e) => {
     e.stopPropagation();
@@ -114,7 +114,9 @@ const PropertyCard = (props) => {
                   </button>
                   <button
                     type="button"
-                    onClick={(e) => onDeleteHandler(props.data._id, e)}
+                    onClick={(e) =>
+                      onDeleteHandler(props.data._id, props.data.photoRef, e)
+                    }
                   >
                     <AiFillDelete size={28} color="red" />
                   </button>
