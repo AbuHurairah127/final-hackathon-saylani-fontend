@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { useState } from "react";
 import { addProperty } from "../../store/actions/propertiesActions";
-import { storage } from "../../config/firebase";
-import { ref, uploadBytes } from "firebase/storage";
+
 const useAddProperty = () => {
   const dispatch = useDispatch();
   const ownerData = useSelector((store) => store.authReducer.cUser);
@@ -72,13 +71,6 @@ const useAddProperty = () => {
       ...propertyData,
       photo: e.target.files,
     });
-    // const storageRef = ref(storage, `images/${propertyData.photo.name}`);
-    // try {
-    //   const image = await uploadBytes(storageRef, propertyData.photo);
-    //   console.log(image);
-    //   alert("uploaded pic");
-    // } catch (error) {}
-    // // console.log(propertyData.photo);
   };
   return {
     onChangeHandler,
@@ -86,7 +78,6 @@ const useAddProperty = () => {
     onSubmitHandler,
     buttonLoader,
     onPhotoChangeHandler,
-    onPhotoUploadHandler,
   };
 };
 

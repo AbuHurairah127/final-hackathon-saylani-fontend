@@ -12,9 +12,7 @@ const MyProperties = () => {
     (store) => store.propertiesReducer.allProperties
   );
   const cUserUID = useSelector((store) => store.authReducer.cUser._id);
-  const isUserLoggined = useSelector(
-    (store) => store.authReducer.isAuthenticated
-  );
+
   const myPropertiesList = propertiesList.filter(
     (property) => property.ownerUID === cUserUID
   );

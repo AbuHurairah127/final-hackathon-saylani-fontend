@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import test from "./../../assets/test.jpg";
 import Button from "./../../components/button/Button";
 import {
   AiOutlineHeart,

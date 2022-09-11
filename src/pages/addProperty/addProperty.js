@@ -12,7 +12,6 @@ const AddProperty = () => {
     onSubmitHandler,
     buttonLoader,
     onPhotoChangeHandler,
-    onPhotoUploadHandler,
   } = useAddProperty();
   return (
     <div

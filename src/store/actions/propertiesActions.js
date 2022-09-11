@@ -93,7 +93,7 @@ export const addProperty =
 export const deleteProperties = (uid, refToPhoto) => async (dispatch) => {
   try {
     const photoRef = ref(storage, `images/${refToPhoto}`);
-    const deletePhoto = await deleteObject(photoRef);
+    await deleteObject(photoRef);
     const options = {
       method: "DELETE",
       url: `${baseURL}properties/delete-property/${uid}`,
