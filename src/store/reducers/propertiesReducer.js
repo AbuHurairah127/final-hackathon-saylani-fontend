@@ -10,6 +10,7 @@ import {
 let initialState = {
   allProperties: [],
   selectedProperty: null,
+  likedProperties: [],
 };
 const propertiesReducer = (state = initialState, action) => {
   switch (action.type) {

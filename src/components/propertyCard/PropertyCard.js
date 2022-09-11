@@ -16,17 +16,12 @@ import {
 } from "../../store/actions/propertiesActions";
 import UpdateModal from "../modal/Modal";
 const PropertyCard = (props) => {
-  console.log(
-    "🚀 ~ file: PropertyCard.js ~ line 20 ~ PropertyCard ~ props",
-    props.data
-  );
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cUser = useSelector((store) => store.authReducer.cUser);
   const isAuthenticated = useSelector(
     (store) => store.authReducer.isAuthenticated
   );
-
   const [updatedPropertyData, setUpdatedPropertyData] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const onUpdateHandler = (e) => {
