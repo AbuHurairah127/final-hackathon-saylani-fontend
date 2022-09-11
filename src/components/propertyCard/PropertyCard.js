@@ -15,6 +15,7 @@ import {
   selectProperty,
 } from "../../store/actions/propertiesActions";
 import UpdateModal from "../modal/Modal";
+import { useMemo } from "react";
 const PropertyCard = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();

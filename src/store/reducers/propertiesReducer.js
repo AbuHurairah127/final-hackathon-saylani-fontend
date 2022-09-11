@@ -5,6 +5,7 @@ import {
   UPDATE_PROPERTIES,
   FILTER_PROPERTIES,
   SELECT_PROPERTY,
+  LIKED_PROPERTIES,
 } from "../types/constants";
 
 let initialState = {
@@ -133,6 +134,13 @@ const propertiesReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedProperty: newSelectedProperty,
+      };
+    }
+    case LIKED_PROPERTIES: {
+      let newLikedProperties = action.payload;
+      return {
+        ...state,
+        likedProperties: newLikedProperties,
       };
     }
     default:
