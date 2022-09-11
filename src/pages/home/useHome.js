@@ -16,6 +16,7 @@ const useHome = () => {
   const likedProperties = useMemo(
     () =>
       isAuthenticated &&
+      properties.length > 0 &&
       properties.filter((property) =>
         property.likedByUsers.includes(cUser._id)
       ),
