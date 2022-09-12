@@ -74,6 +74,8 @@ export const addProperty =
           likes: 0,
           photoURL: downloadURL,
           photoRef: propertyPhotoRef,
+          likes: 0,
+          likedByUsers: [],
         },
       };
       let response = await axios.request(options);
@@ -142,6 +144,8 @@ export const updateProperty =
           ownerPhoneNumber: propertyData.ownerPhoneNumber,
           ownerUID: propertyData.ownerUID,
           updatedAt: new Date(),
+          likes: propertyData.likes,
+          likedByUsers: propertyData.likedByUsers,
         },
       };
       const response = await axios.request(options);
