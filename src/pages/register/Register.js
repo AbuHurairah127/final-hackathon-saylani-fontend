@@ -18,7 +18,7 @@ const Register = () => {
   } = useRegister();
   return (
     <div
-      className="max-w-screen flex flex-col items-center justify-between h-[100vh] bg-center bg-cover"
+      className="max-w-screen flex flex-col items-center justify-between min-h-[100vh] bg-center bg-cover"
       style={{
         fontFamily: "work sans",
         backgroundImage: `linear-gradient(0deg,rgba(2, 48, 71, 0.95),rgba(0, 180, 216, 0.15)),url(${loginBG})`,
@@ -44,76 +44,84 @@ const Register = () => {
           >
             <div className="w-full flex flex-col items-center ">
               <div className="md:w-[60vw] flex flex-col flex-wrap justify-between items-center my-5 mx-5">
-                <div className="w-full flex justify-between">
-                  <label
-                    htmlFor="firstName"
-                    className="self-start text-white text-lg"
-                  >
-                    First Name:
-                  </label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    id="firstName"
-                    placeholder="First Name *"
-                    required
-                    className="md:w-[18vw] outline-0 px-4 py-2 rounded-sm border-2"
-                    value={registerData.firstName}
-                    onChange={(e) => onChangeHandler(e)}
-                  />
-                  <label
-                    htmlFor="lastName"
-                    className="self-start text-white text-lg"
-                  >
-                    Last Name:
-                  </label>
-                  <input
-                    type="text"
-                    name="lastName"
-                    id="lastName"
-                    placeholder="Last Name *"
-                    required
-                    className="md:w-[18vw] outline-0 px-4 py-2 rounded-sm border-2"
-                    value={registerData.lastName}
-                    onChange={(e) => onChangeHandler(e)}
-                  />
+                <div className="md:w-full flex justify-between  flex-col lg:flex-row">
+                  <div className="flex w-full justify-between flex-wrap">
+                    <label
+                      htmlFor="firstName"
+                      className="self-start text-white text-lg"
+                    >
+                      First Name:
+                    </label>
+                    <input
+                      type="text"
+                      name="firstName"
+                      id="firstName"
+                      placeholder="First Name *"
+                      required
+                      className="w-[48vw] lg:w-[18vw] outline-0 px-4 py-2 rounded-sm border-2"
+                      value={registerData.firstName}
+                      onChange={(e) => onChangeHandler(e)}
+                    />
+                  </div>
+                  <div className="flex w-full justify-between flex-wrap mt-3 lg:mt-0 lg:ml-2">
+                    <label
+                      htmlFor="lastName"
+                      className="self-start text-white text-lg"
+                    >
+                      Last Name:
+                    </label>
+                    <input
+                      type="text"
+                      name="lastName"
+                      id="lastName"
+                      placeholder="Last Name *"
+                      required
+                      className="w-[48vw] lg:w-[18vw] outline-0 px-4 py-2 rounded-sm border-2"
+                      value={registerData.lastName}
+                      onChange={(e) => onChangeHandler(e)}
+                    />
+                  </div>
                 </div>
-                <div className="w-full flex justify-between mt-5">
-                  <label
-                    htmlFor="userName"
-                    className="self-start text-white text-lg"
-                  >
-                    Username:
-                  </label>
-                  <input
-                    type="text"
-                    name="userName"
-                    id="userName"
-                    placeholder="Username *"
-                    required
-                    className="md:w-[18vw] outline-0 px-4 py-2 rounded-sm border-2"
-                    value={registerData.userName}
-                    onChange={(e) => onChangeHandler(e)}
-                  />
-                  <label
-                    htmlFor="phone"
-                    className="self-start text-white text-lg"
-                  >
-                    Number:
-                  </label>
-                  <input
-                    type="number"
-                    name="phone"
-                    id="phone"
-                    min={"03000000000"}
-                    placeholder="Phone Number *"
-                    required
-                    className="md:w-[18vw] outline-0 px-4 py-2 rounded-sm border-2"
-                    value={registerData.phone}
-                    onChange={(e) => onChangeHandler(e)}
-                  />
+                <div className="md:w-full flex justify-between mt-2 flex-col lg:flex-row">
+                  <div className="flex w-full flex-wrap justify-between mt-3">
+                    <label
+                      htmlFor="userName"
+                      className="self-start text-white text-lg"
+                    >
+                      Username:
+                    </label>
+                    <input
+                      type="text"
+                      name="userName"
+                      id="userName"
+                      placeholder="Username *"
+                      required
+                      className="w-[48vw] lg:w-[18vw] outline-0 px-4 py-2 rounded-sm border-2"
+                      value={registerData.userName}
+                      onChange={(e) => onChangeHandler(e)}
+                    />
+                  </div>
+                  <div className="flex w-full flex-wrap justify-between lg:ml-2 mt-3">
+                    <label
+                      htmlFor="phone"
+                      className="self-start text-white text-lg"
+                    >
+                      Number:
+                    </label>
+                    <input
+                      type="number"
+                      name="phone"
+                      id="phone"
+                      min={"03000000000"}
+                      placeholder="Phone Number *"
+                      required
+                      className="w-[48vw] lg:w-[18vw] outline-0 px-4 py-2 rounded-sm border-2"
+                      value={registerData.phone}
+                      onChange={(e) => onChangeHandler(e)}
+                    />
+                  </div>
                 </div>
-                <div className="w-full flex justify-between mt-5">
+                <div className="md:w-full flex justify-between mt-2 flex-col lg:flex-row">
                   <label
                     htmlFor="email"
                     className="self-start text-white text-lg"
@@ -126,14 +134,14 @@ const Register = () => {
                     id="email"
                     placeholder="Email *"
                     required
-                    className="md:w-[48.5vw] outline-0 px-4 py-2 rounded-sm border-2"
+                    className=" lg:w-[48.5vw] outline-0 px-4 py-2 rounded-sm border-2"
                     value={registerData.email}
                     onChange={(e) => onChangeHandler(e)}
                   />
                 </div>
                 {!isPasswordAppear ? (
                   <>
-                    <div className="w-full flex justify-between mt-5">
+                    <div className="md:w-full flex justify-between mt-2 flex-col lg:flex-row">
                       <label
                         htmlFor="password"
                         className="self-start text-white text-lg"
@@ -164,7 +172,7 @@ const Register = () => {
                   </>
                 ) : (
                   <>
-                    <div className="w-full flex justify-between mt-5">
+                    <div className="md:w-full flex justify-between mt-2 flex-col lg:flex-row">
                       <label
                         htmlFor="password"
                         className="self-start text-white text-lg"

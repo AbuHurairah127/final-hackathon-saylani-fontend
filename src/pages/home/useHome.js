@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
-import propertiesReducer from "../../store/reducers/propertiesReducer";
 import { LIKED_PROPERTIES } from "../../store/types/constants";
 import { useDispatch } from "react-redux";
 const useHome = () => {
@@ -9,11 +8,9 @@ const useHome = () => {
     (store) => store.propertiesReducer.allProperties
   );
   const cUser = useSelector((store) => store.authReducer.cUser);
-  console.log(cUser);
   const isAuthenticated = useSelector(
     (store) => store.authReducer.isAuthenticated
   );
-
   const likedProperties = useMemo(
     () =>
       isAuthenticated &&
@@ -22,7 +19,7 @@ const useHome = () => {
       properties.filter((property) =>
         property.likedByUsers.includes(cUser._id)
       ),
-    [isAuthenticated, properties]
+    [isAuthenticated, properties, cUser]
   );
   dispatch({ type: LIKED_PROPERTIES, payload: likedProperties });
   return { properties };
