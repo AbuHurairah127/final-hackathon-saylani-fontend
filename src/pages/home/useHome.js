@@ -9,6 +9,7 @@ const useHome = () => {
     (store) => store.propertiesReducer.allProperties
   );
   const cUser = useSelector((store) => store.authReducer.cUser);
+  console.log(cUser);
   const isAuthenticated = useSelector(
     (store) => store.authReducer.isAuthenticated
   );
@@ -16,6 +17,7 @@ const useHome = () => {
   const likedProperties = useMemo(
     () =>
       isAuthenticated &&
+      cUser &&
       properties.length > 0 &&
       properties.filter((property) =>
         property.likedByUsers.includes(cUser._id)

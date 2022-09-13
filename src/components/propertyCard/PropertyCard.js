@@ -97,7 +97,8 @@ const PropertyCard = (props) => {
           </div>
           <div className="bottom-section flex justify-around lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 transition-all delay-300 duration-1000 ease-in-out">
             {isAuthenticated ? (
-              props.data.ownerUID === cUser._id ? (
+              cUser &&
+              (props.data.ownerUID === cUser._id ? (
                 <>
                   <button
                     type="button"
@@ -149,7 +150,7 @@ const PropertyCard = (props) => {
                     <Button label={props.data.ownerPhoneNumber} />
                   </a>
                 </>
-              )
+              ))
             ) : (
               <>
                 <button type="button" onClick={redirectToLogin}>
